@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>UrlShortener</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <%= csrf_meta_tags %>
+  <%= csp_meta_tag %>
+
+  <!-- Tailwind CSS -->
+  <%= stylesheet_link_tag "tailwind", "data-turbo-track": "reload" %>
+  
+  <!-- Custom application styles -->
+  <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
+
+  <!-- JavaScript via Importmap -->
+  <%= javascript_importmap_tags %>
+</head>
+
+<body class="bg-gray-100">
+  <!-- Nagłówek z linkami do logowania/wylogowania -->
+  <nav class="bg-white shadow mb-4">
+    <div class="container mx-auto p-4 flex justify-between items-center">
+      <%= link_to "URL Shortener", root_path, class: "text-xl font-bold text-gray-900" %>
+      <div>
+        <% if user_signed_in? %>
+          <%= link_to 'Dashboard', short_urls_path, class: "text-gray-800 hover:text-indigo-600 mr-4" %>
+         <%= link_to 'Logout', destroy_user_session_path, data: { turbo_method: :delete, turbo_confirm: "Are you sure you want to log out?" }, class: "text-gray-800 hover:text-indigo-600" %>
+
+        <% else %>
+          <%= link_to 'Sign Up', new_user_registration_path, class: "text-gray-800 hover:text-indigo-600 mr-4" %>
+          <%= link_to 'Login', new_user_session_path, class: "text-gray-800 hover:text-indigo-600" %>
+        <% end %>
+      </div>
+    </div>
+  </nav>
+  <div class="container mx-auto p-4">
+    <p class="notice"><%= notice %></p>
+    <p class="alert"><%= alert %></p>
+    <%= yield %>
+  </div>
+</body>
+</html>
