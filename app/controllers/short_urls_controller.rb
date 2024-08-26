@@ -2,7 +2,7 @@ class ShortUrlsController < ApplicationController
   before_action :authenticate_user!, except: [:show]
 
   def index
-    @short_urls = current_user.short_urls
+    @short_urls = current_user.short_urls.reverse
   end
 
   def new
@@ -14,7 +14,8 @@ class ShortUrlsController < ApplicationController
     if @short_url.save
       redirect_to short_urls_path, notice: 'Short URL was successfully created.'
     else
-      render :new
+      flash.now[:alert] = @short_url.errors.full_messages.join(', ')
+      render :new, status: :unprocessable_entity
     end
   end
 
@@ -23,7 +24,7 @@ class ShortUrlsController < ApplicationController
     if @short_url
       redirect_to @short_url.original_url, allow_other_host: true
     else
-      render plain: "URL not found", status: :not_found
+      render plain: 'URL not found', status: :not_found
     end
   end
 

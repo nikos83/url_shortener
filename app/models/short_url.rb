@@ -7,7 +7,7 @@ class ShortUrl
 
   belongs_to :user
 
-  validates :original_url, presence: true
+  validates :original_url, presence: true, url: true
   validates :short_code, presence: true, uniqueness: true
 
   before_validation :generate_short_code, on: :create
