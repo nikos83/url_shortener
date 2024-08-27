@@ -16,6 +16,8 @@ gem 'tailwindcss-rails'
 gem 'turbo-rails'
 
 gem 'bootsnap', require: false
+gem 'kaminari'
+gem 'kaminari-mongoid', '~> 1.0.2'
 gem 'tzinfo-data', platforms: %i[windows jruby]
 
 group :development, :test do

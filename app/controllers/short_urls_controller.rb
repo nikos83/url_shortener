@@ -2,7 +2,7 @@ class ShortUrlsController < ApplicationController
   before_action :authenticate_user!, except: [:show]
 
   def index
-    @short_urls = current_user.short_urls.reverse
+    @short_urls = ShortUrl.order(created_at: :desc).page(params[:page]).per(5)
   end
 
   def new
