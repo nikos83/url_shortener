@@ -1,2 +1,30 @@
 pl:
-  hello: "Witaj"
+  helpers:
+    submit:
+      create: "Utwórz %{model}"
+      update: "Zaktualizuj %{model}"
+  flash:
+    notice: "Sukces!"
+    alert: "Ostrzeżenie!"
+    error: "Błąd!"
+  short_urls:
+    new:
+      title: "Utwórz nowy skrócony URL"
+      original_url: "Oryginalny URL"
+      submit: "Utwórz skrócony URL"
+      back: "Powrót"
+    index:
+      title: "Twoje skrócone URL-e"
+      short_url: "Skrócony URL"
+      original_url: "Oryginalny URL"
+      clicks: "Kliknięcia"
+      create_new: "Utwórz nowy skrócony URL"
+      copy: "Kopiuj URL"
+  nav:
+    home: "Strona główna"
+    about: "O nas"
+    contact: "Kontakt"
+    login: "Zaloguj się"
+    logout: "Wyloguj się"
+    sign_up: "Zarejestruj się"
+    dashboard: "Panel"

@@ -6,6 +6,11 @@ pl:
       confirmed: "Twoje konto zostało aktywowane. Zostałeś pomyślnie zalogowany."
       send_instructions: "Za chwilę otrzymasz email z instrukcją jak aktywować konto."
       send_paranoid_instructions: "Jeśli Twój adres email istnieje w naszej bazie, za chwilę powinieneś otrzymać instrukcję jak aktywować konto."
+      new:
+        resend_confirmation: "Wyślij ponownie instrukcje potwierdzenia"
+        email: "Adres email"
+        email_placeholder: "Wprowadź adres email"
+        submit: "Wyślij ponownie instrukcje potwierdzenia"
     failure:
       already_authenticated: "Jesteś aktualnie zalogowany."
       inactive: "Twoje konto nie zostało jeszcze aktywowane."
@@ -17,14 +22,33 @@ pl:
       unauthenticated: "Aby kontynuować musisz się zalogować."
       unconfirmed: "Aby kontynuować musisz aktywować swoje konto."
     mailer:
+      greeting: "Witaj %{email}!"
       confirmation_instructions:
         subject: "Instrukcja aktywacji konta"
+        greeting: "Witamy %{email}!"
+        instruction: "Możesz potwierdzić swój adres email, klikając w poniższy link:"
+        action: "Potwierdź moje konto"
       reset_password_instructions:
         subject: "Instrukcja zresetowania hasła."
+        instructions: "Ktoś poprosił o link do zmiany hasła. Możesz to zrobić, klikając w poniższy link."
+        action: "Zmień moje hasło"
+        ignore: "Jeśli to nie Ty prosiłeś o zmianę hasła, zignoruj tę wiadomość."
+        note: "Twoje hasło nie zostanie zmienione, dopóki nie uzyskasz dostępu do powyższego linku i nie utworzysz nowego."
       unlock_instructions:
         subject: "Instrukcja odblokowania konta"
+        account_locked: "Twoje konto zostało zablokowane z powodu zbyt wielu nieudanych prób logowania."
+        click_to_unlock: "Kliknij poniższy link, aby odblokować swoje konto:"
+        action: "Odblokuj moje konto"
+      email_changed:
+        subject: "Adres email został zmieniony."
+        greeting: "Witaj %{email}!"
+        notify_change_pending: "Informujemy, że Twój adres email jest zmieniany na %{new_email}."
+        notify_change_complete: "Informujemy, że Twój adres email został zmieniony na %{new_email}."
+      password_change:
+        subject: "Hasło zostało zmienione."
+
     omniauth_callbacks:
-      failure: "Logowanie przez konto %{kind} zakończyło się błędem: \"%{reason}\"."
+      failure: 'Logowanie przez konto %{kind} zakończyło się błędem: "%{reason}".'
       success: "Zalogowałeś się pomyślnie przez konto %{kind}."
     passwords:
       no_token: "Dostęp do tej strony jest możliwy jedynie poprzez użycie prawidłowego adresu z emaila z instrukcjami o resecie hasłą. Jeżeli właśnie skorzystałeś z tego adresu, sprawdź czy użyty adres jest zgodny z tym w emailu."
@@ -32,6 +56,33 @@ pl:
       send_paranoid_instructions: "Jeżeli Twój adres istnieje w naszej bazie, otrzymasz za chwilę emaila z instrukcją zmiany hasła."
       updated: "Twoje hasło zostało zmienione. Zostałeś pomyślnie zalogowany."
       updated_not_active: "Twoje hasło zostało zmienione."
+      edit:
+        change_password: "Zmień swoje hasło"
+        new_password: "Nowe hasło"
+        new_password_placeholder: "Wprowadź nowe hasło"
+        password_confirmation: "Potwierdź nowe hasło"
+        password_confirmation_placeholder: "Potwierdź nowe hasło"
+        submit: "Zmień moje hasło"
+        title: "Edytuj %{resource}"
+        email: "Adres email"
+        waiting_confirmation: "Obecnie oczekuje na potwierdzenie:"
+        password: "Hasło"
+        password_hint: "(pozostaw puste, jeśli nie chcesz zmieniać)"
+        minimum_password_length: "Minimum %{count} znaków"
+        password_confirmation: "Potwierdź nowe hasło"
+        current_password: "Obecne hasło"
+        current_password_hint: "(potrzebujemy Twojego obecnego hasła, aby potwierdzić zmiany)"
+        update: "Zaktualizuj"
+        cancel_account: "Anuluj moje konto"
+        unhappy: "Niezadowolony?"
+        cancel_my_account: "Anuluj moje konto"
+        confirm_cancel: "Czy jesteś pewien?"
+        back: "Wróć"
+      new:
+        forgot_password: "Nie pamiętasz hasła?"
+        email: "Adres email"
+        email_placeholder: "Wprowadź adres email"
+        submit: "Wyślij instrukcje resetowania hasła"
     registrations:
       destroyed: "Do widzenia! Twoje konto zostało usunięte."
       signed_up: "Witaj! Zarejestrowałeś się pomyślnie."
@@ -40,14 +91,56 @@ pl:
       signed_up_but_unconfirmed: "Wiadomość email z instrukcją aktywacji konta została przesłana na Twój adres email. Użj linku z emaila aby aktywować konto."
       update_needs_confirmation: "Konto zostało zaktualizowane. Niemniej jednak przed wprowadzeniem zmian musimy potwierdzić Twój nowy adres email. Za chwilę wyślemy instrukcję na nowy adres."
       updated: "Konto zostało pomyślnie zaktualizowane."
+      edit:
+        title: "Edytuj %{resource}"
+        email: "Adres email"
+        waiting_confirmation: "Obecnie oczekuje na potwierdzenie:"
+        password: "Hasło"
+        password_hint: "(pozostaw puste, jeśli nie chcesz zmieniać)"
+        minimum_password_length: "Minimum %{count} znaków"
+        password_confirmation: "Potwierdź nowe hasło"
+        current_password: "Obecne hasło"
+        current_password_hint: "(potrzebujemy Twojego obecnego hasła, aby potwierdzić zmiany)"
+        update: "Zaktualizuj"
+        cancel_account: "Anuluj moje konto"
+        unhappy: "Niezadowolony?"
+        cancel_my_account: "Anuluj moje konto"
+        confirm_cancel: "Czy jesteś pewien?"
+        back: "Wróć"
+      new:
+        sign_up: "Zarejestruj się"
+        email: "Adres email"
+        email_placeholder: "Wprowadź adres email"
+        password: "Hasło"
+        password_placeholder: "Wprowadź hasło"
+        password_confirmation: "Potwierdź hasło"
+        password_confirmation_placeholder: "Potwierdź hasło"
+        submit: "Zarejestruj się"
     sessions:
       user:
         signed_in: "Zostałeś zalogowany."
         signed_out: "Zostałeś wylogowany."
+      new:
+        sign_in: "Zaloguj się"
+        email: "Adres email"
+        email_placeholder: "Wprowadź adres email"
+        password: "Hasło"
+        password_placeholder: "Wprowadź hasło"
+        remember_me: "Zapamiętaj mnie"
+        forgot_password: "Nie pamiętasz hasła?"
+        submit: "Zaloguj się"
     unlocks:
       send_instructions: "Za chwilę otrzymasz wiadomość email z instrukcją jak odblokować konto."
       send_paranoid_instructions: "Jeżeli Twoje konto istnieje, otrzymasz wiadomość emial z instrukcją jak odblokować konto."
       unlocked: "Twoje konto została pomyślnie odblokowane. Zaloguj się by kontynuować."
+    shared:
+      links:
+        login: "Zaloguj się"
+        sign_up: "Zarejestruj się"
+        forgot_password: "Nie pamiętasz hasła?"
+        resend_confirmation: "Nie otrzymałeś instrukcji potwierdzenia?"
+        resend_unlock: "Nie otrzymałeś instrukcji odblokowania?"
+        sign_in_with: "Zaloguj się przez %{provider}"
   errors:
     messages:
       already_confirmed: "już został aktywowany, proszę spróbować się zalogować."

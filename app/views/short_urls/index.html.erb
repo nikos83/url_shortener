@@ -1,15 +1,15 @@
-<h1 class="text-3xl font-bold mb-6">Your Shortened URLs</h1>
+<h1 class="text-3xl font-bold mb-6"><%= t('short_urls.index.title') %></h1>
 
-<%= link_to 'Create New Short URL', new_short_url_path, class: "inline-block mb-4 px-4 py-2 bg-indigo-600 text-white font-semibold rounded hover:bg-indigo-700" %>
+<%= link_to t('short_urls.index.create_new'), new_short_url_path, class: "inline-block mb-4 px-4 py-2 bg-indigo-600 text-white font-semibold rounded hover:bg-indigo-700" %>
 
 <div class="space-y-4">
   <% @short_urls.each do |short_url| %>
     <div class="bg-white p-4 rounded-lg shadow-md flex justify-between items-center">
       <div>
-        <strong>Short URL:</strong> 
+        <strong><%= t('short_urls.index.short_url') %></strong> 
         <%= link_to "#{ENV['ROOT_URL']}/#{short_url.short_code}", short_path(short_url.short_code), class: "text-indigo-600 hover:underline" %>
         <br>
-        <strong>Original URL:</strong> 
+        <strong><%= t('short_urls.index.original_url') %></strong> 
         <%= link_to short_url.original_url, short_url.original_url, class: "text-gray-600 hover:underline" %>
       </div>
       <button 
@@ -18,7 +18,7 @@
         data-action="click->copy#copy" 
         class="bg-indigo-600 text-white py-1 px-4 rounded hover:bg-indigo-700"
       >
-        Copy
+       <%= t('short_urls.index.copy') %>
       </button>
     </div>
   <% end %>
