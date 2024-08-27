@@ -1,0 +1,19 @@
+<%= paginator.render do -%>
+  <nav class="flex items-center justify-between" role="navigation" aria-label="pager">
+    <div class="flex-1 flex justify-between sm:hidden">
+      <%= first_page_tag unless current_page.first? %>
+      <%= prev_page_tag unless current_page.first? %>
+    </div>
+    <div class="hidden sm:flex-1 sm:flex sm:items-center sm:justify-between">
+      <div class="relative z-0 inline-flex rounded-md shadow-sm -space-x-px">
+        <% each_page do |page| -%>
+          <% if page.display_tag? -%>
+            <%= content_tag(:span, link_to(page, url_for(page: page), class: "relative inline-flex items-center px-4 py-2 border text-sm font-medium #{'bg-indigo-500 text-white' if page.current?}")) %>
+          <% elsif !page.was_truncated? -%>
+            <%= content_tag(:span, '...', class: "relative inline-flex items-center px-4 py-2 border border-gray-300 bg-white text-sm font-medium text-gray-700") %>
+          <% end -%>
+        <% end -%>
+      </div>
+    </div>
+  </nav>
+<% end -%>
