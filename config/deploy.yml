@@ -31,6 +31,7 @@ accessories:
 env:
   secret:
     - RAILS_MASTER_KEY
+    - SECRET_KEY_BASE
 traefik:
   options:
     publish:
@@ -50,7 +51,6 @@ volumes:
 # healthcheck:
 #   path: /healthz
 #   port: 4000
-
 
 # Bridge fingerprinted assets, like JS and CSS, between versions to avoid
 # hitting 404 on in-flight requests. Combines all files from new and old
