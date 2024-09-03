@@ -9,10 +9,10 @@ servers:
   web:
     hosts:
       - 146.59.44.11
-    # labels:
-    #   traefik.http.routers.deanout_secure.entrypoints: websecure
-    #   traefik.http.routers.deanout_secure.rule: Host(`poauto.pl`)
-    #   traefik.http.routers.deanout_secure.tls: true
+    labels:
+      traefik.http.routers.deanout_secure.entrypoints: websecure
+      traefik.http.routers.deanout_secure.rule: Host(`poauto.pl`)
+      traefik.http.routers.deanout_secure.tls: false
 registry:
   username: nikos83
   password: <%= ENV["KAMAL_REGISTRY_PASSWORD"] %>
