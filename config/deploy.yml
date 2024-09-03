@@ -10,11 +10,10 @@ servers:
     hosts:
       - 146.59.44.11
     labels:
-      - "traefik.enable=true"
-      - "traefik.http.routers.poauto.pl.rule=Host(`poauto.pl`)"
-      - "traefik.http.routers.poauto.pl.entrypoints=https"
-      - "traefik.http.services.poauto.pl.loadbalancer.server.port=3000"
-      - "traefik.http.routers.poauto.pl.tls.certresolver=certbot"
+      traefik.http.routers.deanout_secure.entrypoints: https
+      traefik.http.routers.deanout_secure.rule: Host(`poauto.pl`)
+      traefik.http.services.api-mynarum-com.loadbalancer.server.port: 3000
+      traefik.http.routers.api-mynarum-com.tls.certresolver: certbot
 
 registry:
   username: nikos83
