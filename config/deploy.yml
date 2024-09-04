@@ -13,7 +13,7 @@ servers:
       traefik.http.routers.deanout_secure.entrypoints: websecure
       traefik.http.routers.deanout_secure.rule: Host(`poauto.pl`)
       traefik.http.routers.deanout_secure.tls: true
-    network: "private"
+    network: "url_shortener_network" # Nazwa sieci, która będzie współdzielona między kontenerami
 
 registry:
   username: nikos83
@@ -25,26 +25,26 @@ ssh:
 accessories:
   mongo:
     image: mongo:latest
-    host: 146.59.44.11 # Assuming MongoDB runs on the same server
+    host: url_shortener-mongo # Użyj nazwy hosta kontenera, nie adresu IP
     port: 27017
     directories:
       - mongo_data:/data/db
-    network: "private"
+    network: "url_shortener_network"
 
 env:
   secret:
     - RAILS_MASTER_KEY
     - SECRET_KEY_BASE
   clear:
-    MONGODB_URI: mongodb://url_shortener-mongo:27017/url_shortener_production
+    MONGODB_URI: mongodb://url_shortener-mongo:27017/url_shortener_production # Użyj nazwy hosta kontenera
 
 traefik:
   options:
     publish:
       - "443:443"
-    network: "private"
   args:
     entryPoints.websecure.address: ":443"
+  network: "url_shortener_network"
 
 volumes:
   - "storage:/rails/storage"
