@@ -28,19 +28,6 @@ accessories:
     port: 27017
     directories:
       - mongo_data:/data/db
-  portainer:
-    image: portainer/portainer-ce:latest
-    host: 146.59.44.11
-    port: 9000
-    labels:
-      traefik.http.routers.portainer.entrypoints: websecure
-      traefik.http.routers.portainer.rule: Host(`portainer.poauto.pl`)
-      traefik.http.services.portainer.loadbalancer.server.port: 9000
-      traefik.http.routers.portainer.tls.certresolver: certbot
-    volumes:
-      - /var/run/docker.sock:/var/run/docker.sock
-      - portainer_data:/data
-
 env:
   secret:
     - RAILS_MASTER_KEY
