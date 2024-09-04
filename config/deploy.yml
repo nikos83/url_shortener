@@ -55,4 +55,4 @@ traefik:
 
 volumes:
   - "storage:/rails/storage"
-  - "portainer_data:/data
+  - "portainer_data:/data"
