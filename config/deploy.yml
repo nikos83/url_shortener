@@ -33,7 +33,7 @@ env:
     - RAILS_MASTER_KEY
     - SECRET_KEY_BASE
   clear:
-    MONGODB_URL: <%= ENV["MONGODB_URL"] %>
+    MONGODB_URI: mongodb://url_shortener-mongo:27017/url_shortener_production
 
 traefik:
   options:
