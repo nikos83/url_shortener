@@ -29,7 +29,8 @@ accessories:
     port: 27017
     directories:
       - mongo_data:/data/db
-    network: "private"
+    options:
+      network: "private"
 
 env:
   secret:
