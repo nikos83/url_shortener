@@ -10,17 +10,9 @@ servers:
     hosts:
       - 146.59.44.11
     labels:
-      # Entry point for HTTP
-      traefik.http.routers.deanout.entrypoints: web
-      traefik.http.routers.deanout.rule: Host(`poauto.pl`)
-      traefik.http.middlewares.redirect-to-https.redirectscheme.scheme: https
-      traefik.http.routers.deanout.middlewares: redirect-to-https
-
-      # Entry point for HTTPS
-      traefik.http.routers.deanout_secure.entrypoints: websecure
-      traefik.http.routers.deanout_secure.rule: Host(`poauto.pl`)
-      traefik.http.routers.deanout_secure.tls.certresolver: certbot
-      traefik.http.services.deanout_secure.loadbalancer.server.port: 3000
+      - "traefik.http.routers.myrouter.rule=Host(`poauto.pl`)"
+      - "traefik.http.routers.myrouter.entrypoints=websecure"
+      - "traefik.http.routers.myrouter.tls.certresolver=letsencrypt"
 
 registry:
   username: nikos83
@@ -50,7 +42,10 @@ traefik:
   args:
     entryPoints.web.address: ":80"
     entryPoints.websecure.address: ":443"
-
+    certResolvers:
+      letsencrypt:
+        email: your-email@example.com
+        storage: /letsencrypt/acme.json
 volumes:
   - "storage:/rails/storage"
 
