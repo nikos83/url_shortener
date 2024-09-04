@@ -13,6 +13,7 @@ servers:
       traefik.http.routers.deanout_secure.entrypoints: websecure
       traefik.http.routers.deanout_secure.rule: Host(`poauto.pl`)
       traefik.http.routers.deanout_secure.tls: true
+    network: "private"
 
 registry:
   username: nikos83
@@ -28,6 +29,8 @@ accessories:
     port: 27017
     directories:
       - mongo_data:/data/db
+    network: "private"
+
 env:
   secret:
     - RAILS_MASTER_KEY
@@ -41,6 +44,7 @@ traefik:
       - "443:443"
   args:
     entryPoints.websecure.address: ":443"
+  network: "private"
 
 volumes:
   - "storage:/rails/storage"
