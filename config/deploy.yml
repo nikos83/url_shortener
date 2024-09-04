@@ -34,7 +34,7 @@ accessories:
     port: 9000
     labels:
       traefik.http.routers.portainer.entrypoints: websecure
-      traefik.http.routers.portainer.rule: "Host(`portainer.poauto.pl`)"
+      traefik.http.routers.portainer.rule: Host(`portainer.poauto.pl`)
       traefik.http.services.portainer.loadbalancer.server.port: 9000
       traefik.http.routers.portainer.tls.certresolver: certbot
     volumes:
