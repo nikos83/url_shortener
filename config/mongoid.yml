@@ -25,5 +25,6 @@ production:
   clients:
     default:
       database: url_shortener_production
-      uri: <%= ENV['MONGODB_URI'] %>
+      hosts:
+        - url_shortener-mongo:27017
       options:
