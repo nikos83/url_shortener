@@ -10,9 +10,9 @@ servers:
     hosts:
       - 146.59.44.11
     labels:
-      - "traefik.http.routers.myrouter.rule=Host(`poauto.pl`)"
-      - "traefik.http.routers.myrouter.entrypoints=websecure"
-      - "traefik.http.routers.myrouter.tls.certresolver=letsencrypt"
+      traefik.http.routers.deanout_secure.entrypoints: websecure
+      traefik.http.routers.deanout_secure.rule: Host(`poauto.pl`)
+      traefik.http.routers.deanout_secure.tls: true
 
 registry:
   username: nikos83
@@ -37,15 +37,10 @@ env:
 traefik:
   options:
     publish:
-      - "80:80"
       - "443:443"
   args:
-    entryPoints.web.address: ":80"
     entryPoints.websecure.address: ":443"
-    certResolvers:
-      letsencrypt:
-        email: your-email@example.com
-        storage: /letsencrypt/acme.json
+
 volumes:
   - "storage:/rails/storage"
 
