@@ -26,5 +26,5 @@ production:
     default:
       database: url_shortener_production
       hosts:
-        - mongo:27017
+        - url_shortener-mongo:27017
       options:
