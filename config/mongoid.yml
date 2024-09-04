@@ -25,6 +25,6 @@ production:
   clients:
     default:
       database: url_shortener_production
-      hosts:
-        - localhost:27017
+      url:
+        - mongodb://mongo:27017/url_shortener_production
       options:
