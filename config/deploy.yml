@@ -13,8 +13,7 @@ servers:
       traefik.enable: "true"
       traefik.http.routers.url_shortener.rule: "Host(`srv19.mikr.us`)"
       traefik.http.services.url_shortener.loadbalancer.server.port: 3000
-      # EntryPoint dla niestandardowego portu HTTP
-      traefik.http.routers.url_shortener.entrypoints: "customhttp"
+      traefik.http.routers.catchall.entryPoints: http
       # traefik.http.routers.deanout_secure.entrypoints: websecure
       # traefik.http.routers.deanout_secure.rule: Host(`api.poauto.pl`)
       # traefik.http.routers.deanout_secure.tls: true
@@ -54,6 +53,8 @@ env:
 #     network: "private"
 #   args:
 #     entryPoints.websecure.address: ":443"
-
+traefik:
+  args:
+    entryPoints.http.address: ":40166"
 volumes:
   - "storage:/rails/storage"
