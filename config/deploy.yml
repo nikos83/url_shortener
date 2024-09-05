@@ -10,10 +10,14 @@ servers:
     hosts:
       - srv19.mikr.us
     labels:
-      traefik.enable: "true"
+     traefik.enable: "true"
+      # Konfiguracja routera dla aplikacji
       traefik.http.routers.url_shortener.rule: "Host(`srv19.mikr.us`)"
-      traefik.http.services.url_shortener.loadbalancer.server.port: 3000
-      traefik.http.routers.catchall.entryPoints: http
+      traefik.http.routers.url_shortener.entrypoints: "http"
+      traefik.http.routers.url_shortener.service: "url_shortener_service"
+      # Konfiguracja usługi dla aplikacji
+      traefik.http.services.url_shortener_service.loadbalancer.server.port: 3000
+
       # traefik.http.routers.deanout_secure.entrypoints: websecure
       # traefik.http.routers.deanout_secure.rule: Host(`api.poauto.pl`)
       # traefik.http.routers.deanout_secure.tls: true
