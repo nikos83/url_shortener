@@ -2,7 +2,7 @@ class ShortUrlsController < ApplicationController
   before_action :authenticate_user!, except: [:show]
 
   def index
-    @short_urls = ShortUrl.order(created_at: :desc).page(params[:page]).per(5)
+    @short_urls = current_user.short_urls.order(created_at: :desc).page(params[:page]).per(5)
   end
 
   def new
@@ -20,7 +20,7 @@ class ShortUrlsController < ApplicationController
   end
 
   def show
-    @short_url = ShortUrl.find_by(short_code: params[:short_code])
+    @short_url = current_user.short_urls.find_by(short_code: params[:short_code])
     if @short_url
       redirect_to @short_url.original_url, allow_other_host: true
     else
