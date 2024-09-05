@@ -23,8 +23,6 @@ servers:
 
     options:
       network: "private"
-      publish:
-        - "40166:40166"
 registry:
   username: nikos83
   password: <%= ENV["KAMAL_REGISTRY_PASSWORD"] %>
@@ -60,6 +58,8 @@ env:
 #     entryPoints.websecure.address: ":443"
 traefik:
   options:
+    publish:
+      - "40166:40166"
     network: "private"
   args:
     entryPoints.web.address: ":40166"
