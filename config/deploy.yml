@@ -60,10 +60,9 @@ env:
 #     entryPoints.websecure.address: ":443"
 traefik:
   options:
-    publish:
-      - "40166:40166"
     network: "private"
   args:
     entryPoints.web.address: ":40166"
+
 volumes:
   - "storage:/rails/storage"
