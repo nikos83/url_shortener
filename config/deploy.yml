@@ -12,9 +12,9 @@ servers:
     labels:
       traefik.enable: "true"
       traefik.http.routers.url_shortener.rule: "Host(`srv19.mikr.us`)"
-      traefik.http.services.url_shortener.loadbalancer.server.port: 40166
-      traefik.http.routers.url_shortener.entrypoints: "customport"
-      traefik.http.routers.url_shortener.tls: "false"
+      traefik.http.services.url_shortener.loadbalancer.server.port: 3000
+      # EntryPoint dla niestandardowego portu HTTP
+      traefik.http.routers.url_shortener.entrypoints: "customhttp"
       # traefik.http.routers.deanout_secure.entrypoints: websecure
       # traefik.http.routers.deanout_secure.rule: Host(`api.poauto.pl`)
       # traefik.http.routers.deanout_secure.tls: true
