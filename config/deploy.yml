@@ -8,10 +8,10 @@ image: nikos83/url_shortener
 servers:
   web:
     hosts:
-      - 146.59.44.11
+      - srv19.mikr.us
     labels:
       traefik.http.routers.deanout_secure.entrypoints: websecure
-      traefik.http.routers.deanout_secure.rule: Host(`poauto.pl`)
+      traefik.http.routers.deanout_secure.rule: Host(`api.poauto.pl`)
       traefik.http.routers.deanout_secure.tls: true
     options:
       network: "private"
@@ -20,12 +20,13 @@ registry:
   password: <%= ENV["KAMAL_REGISTRY_PASSWORD"] %>
 
 ssh:
-  user: debian
+  user: deploy
+  port: 10232
 
 accessories:
   mongo:
     image: mongo:latest
-    host: 146.59.44.11 # Assuming MongoDB runs on the same server
+    host: srv19.mikr.us # Assuming MongoDB runs on the same server
     port: 27017
     directories:
       - mongo_data:/data/db
