@@ -12,11 +12,9 @@ servers:
     labels:
       traefik.enable: "true"
       # Definiowanie routera dla aplikacji
-      traefik.http.routers.url_shortener.rule: "Host(`srv19.mikr.us`)" # Host dla aplikacji
-      traefik.http.routers.url_shortener.entrypoints: "web" # EntryPoint dla HTTP
-      traefik.http.routers.url_shortener.service: "url_shortener_service" # Przypisanie routera do usługi
-      # Definiowanie usługi, przekierowanie na port aplikacji wewnątrz kontenera
-      # traefik.http.services.url_shortener_service.loadbalancer.server.port: 3000 # Port aplikacji wewnątrz kontenera
+      traefik.http.routers.deanout_secure.entrypoints: web
+      traefik.http.routers.deanout_secure.rule: Host(`srv19.mikr.us`)
+      traefik.http.routers.deanout_secure.tls: false
 
       # traefik.http.routers.deanout_secure.entrypoints: websecure
       # traefik.http.routers.deanout_secure.rule: Host(`api.poauto.pl`)
