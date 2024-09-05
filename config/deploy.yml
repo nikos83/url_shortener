@@ -10,9 +10,9 @@ servers:
     hosts:
       - srv19.mikr.us
     labels:
-      - traefik.http.routers.my-container.rule=Host(`srv19.mikr.us`)
+      traefik.http.routers.my-container.rule: Host(`srv19.mikr.us`)
       # Tell Traefik to use the port 12345 to connect to `my-container`
-      - traefik.http.services.my-service.loadbalancer.server.port=40166
+      traefik.http.services.my-service.loadbalancer.server.port: 40166
       # traefik.http.routers.deanout_secure.entrypoints: websecure
       # traefik.http.routers.deanout_secure.rule: Host(`api.poauto.pl`)
       # traefik.http.routers.deanout_secure.tls: true
