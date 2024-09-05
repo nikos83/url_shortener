@@ -10,7 +10,7 @@ servers:
     hosts:
       - srv19.mikr.us
     labels:
-     traefik.enable: "true"
+      traefik.enable: "true"
       # Konfiguracja routera dla aplikacji
       traefik.http.routers.url_shortener.rule: "Host(`srv19.mikr.us`)"
       traefik.http.routers.url_shortener.entrypoints: "http"
