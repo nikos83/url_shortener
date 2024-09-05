@@ -59,8 +59,10 @@ traefik:
   options:
     publish:
       - "40166:40166"
+      - "443:443"
     network: "private"
   args:
-    entryPoints.http.address: ":40166"
+    entryPoints.web.address: ":40166"
+    entryPoints.websecure.address: ":443"
 volumes:
   - "storage:/rails/storage"
