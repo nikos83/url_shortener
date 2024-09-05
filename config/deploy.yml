@@ -56,6 +56,10 @@ env:
 #   args:
 #     entryPoints.websecure.address: ":443"
 traefik:
+  options:
+    publish:
+      - "40166:40166"
+    network: "private"
   args:
     entryPoints.http.address: ":40166"
 volumes:
