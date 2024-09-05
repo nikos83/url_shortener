@@ -45,13 +45,13 @@ env:
   clear:
     MONGODB_URI: mongodb://url_shortener-mongo:27017/url_shortener_production
 
-traefik:
-  options:
-    publish:
-      - "443:443"
-    network: "private"
-  args:
-    entryPoints.websecure.address: ":443"
+# traefik:
+#   options:
+#     publish:
+#       - "443:443"
+#     network: "private"
+#   args:
+#     entryPoints.websecure.address: ":443"
 
 volumes:
   - "storage:/rails/storage"
