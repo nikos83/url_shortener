@@ -2,13 +2,13 @@ module ApplicationHelper
   def flash_title_for(flash_type)
     case flash_type.to_sym
     when :notice
-      "Success!"
+      'Success!'
     when :alert
-      "Warning!"
+      'Warning!'
     when :error
-      "Error!"
+      'Error!'
     else
-      "Notice"
+      'Notice'
     end
   end
 end

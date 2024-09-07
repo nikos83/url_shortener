@@ -1,6 +1,6 @@
 source 'https://rubygems.org'
 
-ruby '3.3.4'
+ruby '3.2.2'
 
 gem 'rails', '~> 7.1.4'
 gem 'sprockets-rails'
@@ -16,6 +16,8 @@ gem 'tailwindcss-rails'
 gem 'turbo-rails'
 
 gem 'bootsnap', require: false
+gem 'kaminari'
+gem 'kaminari-mongoid', '~> 1.0.2'
 gem 'tzinfo-data', platforms: %i[windows jruby]
 
 group :development, :test do

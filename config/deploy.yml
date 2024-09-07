@@ -1,0 +1,68 @@
+# Name of your application. Used to uniquely configure containers.
+service: url_shortener
+
+# Name of the container image.
+image: nikos83/url_shortener
+
+# Deploy to these servers.
+servers:
+  web:
+    hosts:
+      - srv19.mikr.us
+    labels:
+      traefik.enable: "true"
+      # Definiowanie routera dla aplikacji
+      traefik.http.routers.url_shortener.rule: "Host(`srv19.mikr.us`)"
+      traefik.http.routers.url_shortener.entrypoints: "web"
+      traefik.http.routers.url_shortener.service: "url_shortener_service"
+      traefik.http.routers.url_shortener.tls: "false"
+
+      # traefik.http.routers.deanout_secure.entrypoints: websecure
+      # traefik.http.routers.deanout_secure.rule: Host(`api.poauto.pl`)
+      # traefik.http.routers.deanout_secure.tls: true
+
+    options:
+      network: "private"
+registry:
+  username: nikos83
+  password: <%= ENV["KAMAL_REGISTRY_PASSWORD"] %>
+
+ssh:
+  user: deploy
+  port: 10232
+
+accessories:
+  mongo:
+    image: mongo:latest
+    host: srv19.mikr.us # Assuming MongoDB runs on the same server
+    port: 27017
+    directories:
+      - mongo_data:/data/db
+    options:
+      network: "private"
+
+env:
+  secret:
+    - RAILS_MASTER_KEY
+    - SECRET_KEY_BASE
+    - ROOT_URL
+  clear:
+    MONGODB_URI: mongodb://url_shortener-mongo:27017/url_shortener_production
+
+# traefik:
+#   options:
+#     publish:
+#       - "443:443"
+#     network: "private"
+#   args:
+#     entryPoints.websecure.address: ":443"
+traefik:
+  options:
+    publish:
+      - "40166:40166"
+    network: "private"
+  args:
+    entryPoints.web.address: ":40166"
+
+volumes:
+  - "storage:/rails/storage"
