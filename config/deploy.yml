@@ -57,6 +57,7 @@ traefik:
   options:
     publish:
       - "443:443"
+    network: "private"
   args:
     entryPoints.websecure.address: ":443"
 
