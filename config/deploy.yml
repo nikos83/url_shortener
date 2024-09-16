@@ -1,28 +1,26 @@
-# Name of your application. Used to uniquely configure containers.
+# Nazwa Twojej aplikacji. Używana do unikalnej konfiguracji kontenerów.
 service: url_shortener
 
-# Name of the container image.
+# Nazwa obrazu kontenera.
 image: nikos83/url_shortener
 
-# Deploy to these servers.
+# Etykiety Traefik przypisane do usługi aplikacji
+labels:
+  traefik.enable: "true"
+  traefik.http.routers.url_shortener.rule: "Host(`poauto.pl`)"
+  traefik.http.routers.url_shortener.entrypoints: "web"
+  traefik.http.routers.url_shortener.service: "url_shortener_service"
+  traefik.http.routers.url_shortener.tls: "false"
+  traefik.http.services.url_shortener_service.loadbalancer.server.port: "3000" # Zamień na port wewnętrzny Twojej aplikacji, jeśli jest inny
+
+# Wdrażaj na tych serwerach.
 servers:
   web:
     hosts:
       - srv19.mikr.us
-    labels:
-      traefik.enable: "true"
-      # Definiowanie routera dla aplikacji
-      traefik.http.routers.url_shortener.rule: "Host(`poauto.pl`)"
-      traefik.http.routers.url_shortener.entrypoints: "web"
-      traefik.http.routers.url_shortener.service: "url_shortener_service"
-      traefik.http.routers.url_shortener.tls: "false"
-
-      # traefik.http.routers.deanout_secure.entrypoints: websecure
-      # traefik.http.routers.deanout_secure.rule: Host(`api.poauto.pl`)
-      # traefik.http.routers.deanout_secure.tls: true
-
     options:
       network: "private"
+
 registry:
   username: nikos83
   password: <%= ENV["KAMAL_REGISTRY_PASSWORD"] %>
@@ -34,7 +32,7 @@ ssh:
 accessories:
   mongo:
     image: mongo:latest
-    host: srv19.mikr.us # Assuming MongoDB runs on the same server
+    host: srv19.mikr.us
     port: 27017
     directories:
       - mongo_data:/data/db
@@ -49,20 +47,13 @@ env:
   clear:
     MONGODB_URI: mongodb://url_shortener-mongo:27017/url_shortener_production
 
-# traefik:
-#   options:
-#     publish:
-#       - "443:443"
-#     network: "private"
-#   args:
-#     entryPoints.websecure.address: ":443"
 traefik:
   options:
     publish:
-      - "40166:40166"
+      - "80:80" # Zmieniono na port 80 dla standardowego dostępu HTTP
     network: "private"
   args:
-    entryPoints.web.address: ":40166"
+    entryPoints.web.address: ":80"
 
 volumes:
   - "storage:/rails/storage"
