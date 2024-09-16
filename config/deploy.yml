@@ -7,7 +7,7 @@ image: nikos83/url_shortener
 # Etykiety Traefik przypisane do usługi aplikacji
 labels:
   traefik.http.routers.url_shortener.entrypoints: websecure
-  traefik.http.routers.url_shortener.rule: Host(`deanout.com`)
+  traefik.http.routers.url_shortener.rule: Host(`poauto.pl`)
   traefik.http.routers.url_shortener.tls: true
   traefik.http.routers.url_shortener.service: "url_shortener_service"
   # traefik.http.routers.url_shortener.tls: "false"
