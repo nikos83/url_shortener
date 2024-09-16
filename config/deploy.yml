@@ -52,8 +52,8 @@ traefik:
     publish:
       - "80:80" # Zmieniono na port 80 dla standardowego dostępu HTTP
     network: "private"
-  args:
-    entryPoints.web.address: ":80"
+  # args:
+  #   entryPoints.web.address: ":80"
 
 volumes:
   - "storage:/rails/storage"
