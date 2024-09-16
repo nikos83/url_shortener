@@ -8,7 +8,7 @@ image: nikos83/url_shortener
 servers:
   web:
     hosts:
-      - api.poauto.pl
+      - poauto.pl
     labels:
       traefik.enable: "true"
       # Definiowanie routera dla aplikacji
