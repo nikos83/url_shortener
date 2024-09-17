@@ -12,7 +12,7 @@ servers:
     labels:
       traefik.enable: "true"
       # Definiowanie routera dla aplikacji
-      traefik.http.routers.url_shortener.rule: "Host(`srv19.mikr.us`, `by.cytr.us`)"
+      traefik.http.routers.url_shortener.rule: "Host(`srv19.mikr.us`, `poauto.pl`)"
       traefik.http.routers.url_shortener.entrypoints: "web"
       traefik.http.routers.url_shortener.service: "url_shortener_service"
       traefik.http.routers.url_shortener.tls: "false"
