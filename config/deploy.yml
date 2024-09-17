@@ -61,6 +61,7 @@ traefik:
     publish:
       - "40166:40166"
       - "80:80"
+      - "443:443"
     network: "private"
   args:
     entryPoints.web.address: ":40166"
