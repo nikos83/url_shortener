@@ -62,10 +62,16 @@ traefik:
       - "40166:40166"
       - "80:80"
       - "443:443"
+      - "8080:8080" # Dashboard
     network: "private"
   args:
     entryPoints.web.address: ":40166"
+    entryPoints.web.address: ":80"
     entryPoints.websecure.address: ":443"
+    entryPoints.dashboard.address: ":8080" # Entry point for dashboard
+    api.dashboard: "true"                  # Enable the dashboard
+    api.insecure: "true"
+    
 
 volumes:
   - "storage:/rails/storage"
