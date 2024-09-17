@@ -10,7 +10,6 @@ servers:
     hosts:
       - srv19.mikr.us
     labels:
-      traefik.enable: "true"
       # Definiowanie routera dla aplikacji
       # traefik.http.routers.url_shortener.rule: "Host(`srv19.mikr.us`, `by.cytr.us`)"
       # traefik.http.routers.url_shortener.entrypoints: "web"
@@ -55,6 +54,7 @@ traefik:
   options:
     publish:
       - "443:443"
+      - "40166:40166"
     network: "private"
   args:
     entryPoints.websecure.address: ":443"
