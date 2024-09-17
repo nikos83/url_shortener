@@ -12,7 +12,7 @@ servers:
     labels:
       traefik.enable: "true"
       # Definiowanie routera dla aplikacji
-      traefik.http.routers.url_shortener.rule: "Host(`api.poauto.pl`, `by.cytr.us`)"
+      traefik.http.routers.url_shortener.rule: "Host(`api.test.pl`, `by.cytr.us`)"
       traefik.http.routers.url_shortener.entrypoints: "websecure"
       traefik.http.routers.url_shortener.service: "url_shortener_service"
       traefik.http.routers.url_shortener.tls: "true"
