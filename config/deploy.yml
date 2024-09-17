@@ -14,8 +14,9 @@ servers:
       # Definiowanie routera dla aplikacji
       traefik.http.routers.url_shortener.rule: "Host(`srv19.mikr.us`, `poauto.pl`)"
       traefik.http.routers.url_shortener.entrypoints: "web"
+      traefik.http.routers.url_shortener.entrypoints: "websecure"
       traefik.http.routers.url_shortener.service: "url_shortener_service"
-      traefik.http.routers.url_shortener.tls: "false"
+      traefik.http.routers.url_shortener.tls: "true"
 
       # traefik.http.routers.deanout_secure.entrypoints: websecure
       # traefik.http.routers.deanout_secure.rule: Host(`api.poauto.pl`)
@@ -60,9 +61,11 @@ traefik:
   options:
     publish:
       - "40166:40166"
+      - "443:443"
     network: "private"
   args:
     entryPoints.web.address: ":40166"
+    entryPoints.websecure.address: ":443"
 
 volumes:
   - "storage:/rails/storage"
