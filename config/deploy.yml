@@ -10,17 +10,16 @@ servers:
     hosts:
       - srv19.mikr.us
     labels:
+      traefik.enable: "true"
       # Definiowanie routera dla aplikacji
-      # traefik.http.routers.url_shortener.rule: "Host(`srv19.mikr.us`, `by.cytr.us`)"
-      # traefik.http.routers.url_shortener.entrypoints: "web"
-      # traefik.http.routers.url_shortener.service: "url_shortener_service"
-      # traefik.http.routers.url_shortener.tls: "false"
-
-      traefik.http.routers.url_shortener.rule: "Host(`poauto.pl`)"
-      traefik.http.routers.url_shortener.entrypoints: "websecure" # EntryPoint dla HTTPS
+      traefik.http.routers.url_shortener.rule: "Host(`srv19.mikr.us`)"
+      traefik.http.routers.url_shortener.entrypoints: "web"
       traefik.http.routers.url_shortener.service: "url_shortener_service"
-      traefik.http.routers.url_shortener.tls: "true" # Włączenie TLS dla HTTPS
-      traefik.http.services.url_shortener_service.loadbalancer.server.port: "3000"
+      traefik.http.routers.url_shortener.tls: "true"
+
+      # traefik.http.routers.deanout_secure.entrypoints: websecure
+      # traefik.http.routers.deanout_secure.rule: Host(`api.poauto.pl`)
+      # traefik.http.routers.deanout_secure.tls: true
 
     options:
       network: "private"
@@ -50,21 +49,20 @@ env:
   clear:
     MONGODB_URI: mongodb://url_shortener-mongo:27017/url_shortener_production
 
+# traefik:
+#   options:
+#     publish:
+#       - "443:443"
+#     network: "private"
+#   args:
+#     entryPoints.websecure.address: ":443"
 traefik:
   options:
     publish:
       - "443:443"
-      - "40166:40166"
     network: "private"
   args:
-    entryPoints.websecure.address: ":443"
-# traefik:
-#   options:
-#     publish:
-#       - "40166:40166"
-#     network: "private"
-#   args:
-#     entryPoints.web.address: ":40166"
+    entryPoints.web.address: ":40166"
 
 volumes:
   - "storage:/rails/storage"
