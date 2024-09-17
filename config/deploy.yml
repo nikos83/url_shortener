@@ -68,7 +68,7 @@ traefik:
     entryPoints.web.address: ":40166"
     entryPoints.web.address: ":80"
     entryPoints.websecure.address: ":443"
-    entryPoints.dashboard.address: ":8080" # Entry point for dashboard
+    entryPoints.dashboard.address: ":80" # Entry point for dashboard
     api.dashboard: "true"                  # Enable the dashboard
     api.insecure: "true"
     
