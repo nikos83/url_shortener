@@ -90,4 +90,6 @@ Rails.application.configure do
   # config.host_authorization = { exclude: ->(request) { request.path == "/up" } }
   config.hosts << 'by.cytr.us'
   config.hosts << 'www.by.cytr.us'
+  config.hosts << 'localhost'
+  config.hosts << 'localhost:3000'
 end
