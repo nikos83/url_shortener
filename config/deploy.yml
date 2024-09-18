@@ -10,7 +10,7 @@ servers:
     hosts:
       - srv19.mikr.us
     labels:
-      traefik.http.routers.url_shortener.rule: "Host(`poauto.pl`)"
+      traefik.http.routers.url_shortener.rule: "Host(`srv19.mikr.us`)"
       traefik.http.routers.url_shortener.entrypoints: "web"
       traefik.http.services.url_shortener_service.loadbalancer.server.port: "3000"
       traefik.http.routers.url_shortener.tls: "false"
@@ -53,10 +53,16 @@ env:
 traefik:
   options:
     publish:
-      - "8080:8080"
+      - "40166:40166"
+      - "80:80"
+      - "443:443"
     network: "private"
   args:
-    entryPoints.web.address: ":8080"
+    # entryPoints.web.address: ":40166"
+    entryPoints.web.address: ":40166"
+    entryPoints.websecure.address: ":443"
+    api.dashboard: "true" # Enable the dashboard
+    api.insecure: "true"
 
 volumes:
   - "storage:/rails/storage"
