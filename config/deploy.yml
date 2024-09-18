@@ -59,10 +59,10 @@ env:
 traefik:
   options:
     publish:
-      - "80:40166"
+      - "80:80"
     network: "private"
   args:
-    entryPoints.web.address: ":40166"
+    entryPoints.web.address: ":80"
 
 volumes:
   - "storage:/rails/storage"
