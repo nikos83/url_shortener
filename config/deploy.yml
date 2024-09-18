@@ -10,16 +10,10 @@ servers:
     hosts:
       - srv19.mikr.us
     labels:
-      traefik.enable: "true"
-      # Definiowanie routera dla aplikacji
       traefik.http.routers.url_shortener.rule: "Host(`poauto.pl`)"
       traefik.http.routers.url_shortener.entrypoints: "web"
-      traefik.http.routers.url_shortener.service: "url_shortener_service"
+      traefik.http.services.url_shortener_service.loadbalancer.server.port: "3000"
       traefik.http.routers.url_shortener.tls: "false"
-
-      # traefik.http.routers.deanout_secure.entrypoints: websecure
-      # traefik.http.routers.deanout_secure.rule: Host(`poauto.pl`)
-      # traefik.http.routers.deanout_secure.tls: true
 
     options:
       network: "private"
@@ -45,9 +39,9 @@ env:
   secret:
     - RAILS_MASTER_KEY
     - SECRET_KEY_BASE
-    - ROOT_URL
   clear:
     MONGODB_URI: mongodb://url_shortener-mongo:27017/url_shortener_production
+    ROOT_URL: http://poauto.pl
 
 # traefik:
 #   options:
@@ -59,18 +53,10 @@ env:
 traefik:
   options:
     publish:
-      - "40166:40166"
-      - "80:80"
-      - "443:443"
-      - "8080:8080" # Dashboard
+      - "8080:8080"
     network: "private"
   args:
-    # entryPoints.web.address: ":40166"
-    entryPoints.web.address: ":80"
-    entryPoints.websecure.address: ":443"
-    entryPoints.dashboard.address: ":40166" # Entry point for dashboard
-    api.dashboard: "true" # Enable the dashboard
-    api.insecure: "true"
+    entryPoints.web.address: ":8080"
 
 volumes:
   - "storage:/rails/storage"
