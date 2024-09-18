@@ -4,13 +4,16 @@ export default class extends Controller {
   copy(event) {
     event.preventDefault();
 
-    const url = this.element.getAttribute("data-copy-url-value");
+    const shortUrl = this.element.getAttribute("data-copy-url-value");
 
-    if (url) {
+    if (shortUrl) {
+      // Dodaj przedrostek, np. ROOT_URL
+      const fullUrl = `${shortUrl}`;
+
       navigator.clipboard
-        .writeText(url)
+        .writeText(fullUrl)
         .then(() => {
-          alert("Copied the link: " + url);
+          alert("Copied the link: " + fullUrl);
         })
         .catch((err) => {
           console.error("Failed to copy: ", err);
