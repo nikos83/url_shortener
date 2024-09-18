@@ -4,12 +4,10 @@ export default class extends Controller {
   copy(event) {
     event.preventDefault();
 
-    const shortUrl = this.element.getAttribute("data-copy-url-value");
+    // Pobrany zostaje pełny URL przekazany w data-copy-url-value
+    const fullUrl = this.element.getAttribute("data-copy-url-value");
 
-    if (shortUrl) {
-      // Dodaj przedrostek, np. ROOT_URL
-      const fullUrl = `${shortUrl}`;
-
+    if (fullUrl) {
       navigator.clipboard
         .writeText(fullUrl)
         .then(() => {
